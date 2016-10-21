@@ -8,8 +8,7 @@ namespace LfMerge.Core.Tests
 {
 	public class LanguageDepotMock : LanguageForgeProject
 	{
-		public LanguageDepotMock(LfMergeSettings settings, string projectCode)
-			: base(settings, projectCode)
+		public LanguageDepotMock(string projectCode) : base(projectCode)
 		{
 		}
 	}

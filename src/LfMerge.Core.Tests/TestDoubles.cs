@@ -67,7 +67,7 @@ namespace LfMerge.Core.Tests
 
 	public class LanguageForgeProjectAccessor: LanguageForgeProject
 	{
-		protected LanguageForgeProjectAccessor(LfMergeSettings settings): base(settings, null)
+		protected LanguageForgeProjectAccessor(): base(null)
 		{
 		}
 

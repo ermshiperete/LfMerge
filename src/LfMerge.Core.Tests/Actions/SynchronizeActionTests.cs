@@ -62,7 +62,7 @@ namespace LfMerge.Core.Tests.Actions
 			_env = new TestEnvironment();
 			_env.Settings.CommitWhenDone = true;
 			_counts = MainClass.Container.Resolve<EntryCounts>();
-			_lfProject = LanguageForgeProject.Create(_env.Settings, testProjectCode);
+			_lfProject = LanguageForgeProject.Create(testProjectCode);
 			TestEnvironment.CopyFwProjectTo(testProjectCode, _env.Settings.WebWorkDirectory);
 
 			// Guids are named for the diffs for the modified test project
@@ -172,7 +172,7 @@ namespace LfMerge.Core.Tests.Actions
 			lfEntry.Senses[0].Gloss["en"].Value = lfChangedGloss;
 			_mongoConnection.UpdateRecord(_lfProject, lfEntry);
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			var lDFdoEntry = lDcache.ServiceLocator.GetObject(_testEntryGuid) as ILexEntry;
 			Assert.That(lDFdoEntry, Is.Not.Null);
@@ -210,7 +210,7 @@ namespace LfMerge.Core.Tests.Actions
 			int createdEntryCount = originalMongoData.Count(e => e.Guid == _testCreatedEntryGuid);
 			Assert.That(createdEntryCount, Is.EqualTo(0));
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			var lDFdoEntry = lDcache.ServiceLocator.GetObject(_testEntryGuid) as ILexEntry;
 			Assert.That(lDFdoEntry.SensesOS[0].Gloss.AnalysisDefaultWritingSystem.Text, Is.EqualTo(ldChangedGloss));
@@ -255,7 +255,7 @@ namespace LfMerge.Core.Tests.Actions
 			lfEntry.AuthorInfo.ModifiedDate = DateTime.UtcNow;
 			_mongoConnection.UpdateRecord(_lfProject, lfEntry);
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			var lDFdoEntry = lDcache.ServiceLocator.GetObject(_testEntryGuid) as ILexEntry;
 			Assert.That(lDFdoEntry.SensesOS[0].Gloss.AnalysisDefaultWritingSystem.Text, Is.EqualTo(fwChangedGloss));
@@ -300,7 +300,7 @@ namespace LfMerge.Core.Tests.Actions
 			IEnumerable<LfLexEntry> updatedMongoData = _mongoConnection.GetLfLexEntries();
 			Assert.That(updatedMongoData.First(e => e.Guid == _testEntryGuid).IsDeleted, Is.True);
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			var lDFdoEntry = lDcache.ServiceLocator.GetObject(_testEntryGuid) as ILexEntry;
 			Assert.That(lDFdoEntry.SensesOS[0].Gloss.AnalysisDefaultWritingSystem.Text, Is.EqualTo(unchangedGloss));
@@ -353,7 +353,7 @@ namespace LfMerge.Core.Tests.Actions
 			Assert.That(updatedMongoData.Count(), Is.EqualTo(originalNumOfFdoEntries));
 			Assert.That(updatedMongoData.First(e => e.Guid == _testEntryGuid).IsDeleted, Is.True);
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			var lDFdoEntry = lDcache.ServiceLocator.GetObject(_testEntryGuid) as ILexEntry;
 			Assert.That(lDFdoEntry.SensesOS[0].Gloss.AnalysisDefaultWritingSystem.Text, Is.EqualTo(fwChangedGloss));
@@ -394,7 +394,7 @@ namespace LfMerge.Core.Tests.Actions
 			lfEntry.AuthorInfo.ModifiedDate = DateTime.UtcNow;
 			_mongoConnection.UpdateRecord(_lfProject, lfEntry);
 
-			_lDProject = new LanguageDepotMock(_lDSettings, testProjectCode);
+			_lDProject = new LanguageDepotMock(testProjectCode);
 			var lDcache = _lDProject.FieldWorksProject.Cache;
 			Assert.That(()=> lDcache.ServiceLocator.GetObject(_testDeletedEntryGuid),
 				Throws.InstanceOf<KeyNotFoundException>());

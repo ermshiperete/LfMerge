@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2016 SIL International
 // This software is licensed under the MIT license (http://opensource.org/licenses/MIT)
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -11,7 +12,9 @@ using LfMerge.Core.MongoConnector;
 using LfMerge.Core.Queues;
 using LfMerge.Core.Reporting;
 using LfMerge.Core.Settings;
+using Palaso.IO;
 using Palaso.Progress;
+using SIL.FieldWorks.FDO;
 
 namespace LfMerge.Core
 {
@@ -53,6 +56,41 @@ namespace LfMerge.Core
 			Actions.Action.Register(containerBuilder);
 			Queue.Register(containerBuilder);
 			return containerBuilder;
+		}
+
+		public static string GetModelSpecificDirectory(string modelVersion)
+		{
+			var dir = FileLocator.DirectoryOfTheApplicationExecutable;
+			if (dir.IndexOf(FdoCache.ModelVersion, StringComparison.Ordinal) >= 0)
+				return dir.Replace(FdoCache.ModelVersion, modelVersion);
+
+			// fall back: append model version. This at least prevents an infinite loop
+			return Path.Combine(dir, modelVersion);
+		}
+
+		public static string ModelVersion
+		{
+			// We're exposing the model version as property so that LfMerge doesn't need a
+			// reference to FDO. This simplifies dealing with multiple model versions.
+			get { return FdoCache.ModelVersion; }
+		}
+
+		public static bool CheckSetup()
+		{
+			var settings = MainClass.Container.Resolve<LfMergeSettings>();
+			var homeFolder = Environment.GetEnvironmentVariable("HOME") ?? "/var/www";
+			string[] folderPaths = { Path.Combine(homeFolder, ".local"),
+				Path.GetDirectoryName(settings.WebWorkDirectory) };
+			foreach (string folderPath in folderPaths)
+			{
+				if (!Directory.Exists(folderPath))
+				{
+					MainClass.Logger.Notice("Folder '{0}' doesn't exist", folderPath);
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 	}

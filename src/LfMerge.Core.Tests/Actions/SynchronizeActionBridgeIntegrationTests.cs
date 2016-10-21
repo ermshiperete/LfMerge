@@ -62,7 +62,7 @@ namespace LfMerge.Core.Tests.Actions
 			SynchronizeActionTests.LDProjectFolderPath =
 				Path.Combine(_lDSettings.WebWorkDirectory, TestLangProj);
 			Directory.CreateDirectory(SynchronizeActionTests.LDProjectFolderPath);
-			_lfProject = LanguageForgeProject.Create(_env.Settings, TestLangProj);
+			_lfProject = LanguageForgeProject.Create(TestLangProj);
 			_synchronizeAction = new SynchronizeAction(_env.Settings, _env.Logger);
 			_workDir = Directory.GetCurrentDirectory();
 			SynchronizeActionTests.LDServer = new MercurialServer(SynchronizeActionTests.LDProjectFolderPath);

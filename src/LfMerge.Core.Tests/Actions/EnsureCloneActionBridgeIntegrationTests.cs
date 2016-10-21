@@ -54,8 +54,7 @@ namespace LfMerge.Core.Tests.Actions
 			SynchronizeActionTests.LDProjectFolderPath =
 				Path.Combine(_lDSettings.WebWorkDirectory, TestContext.CurrentContext.Test.Name);
 			Directory.CreateDirectory(SynchronizeActionTests.LDProjectFolderPath);
-			_lfProject = LanguageForgeProject.Create(_env.Settings,
-				TestContext.CurrentContext.Test.Name);
+			_lfProject = LanguageForgeProject.Create(TestContext.CurrentContext.Test.Name);
 			_EnsureCloneAction = new EnsureCloneActionWithoutMongo(_env.Settings, _env.Logger);
 		}
 

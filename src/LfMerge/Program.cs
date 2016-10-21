@@ -9,23 +9,11 @@ using LfMerge.Core.Actions;
 using LfMerge.Core.Actions.Infrastructure;
 using LfMerge.Core.MongoConnector;
 using LfMerge.Core.Settings;
-using Palaso.IO;
-using SIL.FieldWorks.FDO;
 
 namespace LfMerge
 {
 	public class Program
 	{
-		private static string GetModelSpecificDirectory(string modelVersion)
-		{
-			var dir = FileLocator.DirectoryOfTheApplicationExecutable;
-			if (dir.IndexOf(FdoCache.ModelVersion, StringComparison.Ordinal) >= 0)
-				return dir.Replace(FdoCache.ModelVersion, modelVersion);
-
-			// fall back: append model version. This at least prevents an infinite loop
-			return Path.Combine(dir, modelVersion);
-		}
-
 		[STAThread]
 		public static void Main(string[] args)
 		{
@@ -34,13 +22,12 @@ namespace LfMerge
 				return;
 
 			MainClass.Logger.Notice("LfMerge (database {0}) starting with args: {1}",
-				FdoCache.ModelVersion, string.Join(" ", args));
+				MainClass.ModelVersion, string.Join(" ", args));
 
 			string differentModelVersion = null;
-			var settings = MainClass.Container.Resolve<LfMergeSettings>();
 			try
 			{
-				if (!CheckSetup(settings))
+				if (!MainClass.CheckSetup())
 					return;
 
 				MongoConnection.Initialize();
@@ -70,7 +57,7 @@ namespace LfMerge
 				startInfo.CreateNoWindow = true;
 				startInfo.ErrorDialog = false;
 				startInfo.UseShellExecute = false;
-				startInfo.WorkingDirectory = GetModelSpecificDirectory(differentModelVersion);
+				startInfo.WorkingDirectory = MainClass.GetModelSpecificDirectory(differentModelVersion);
 				try
 				{
 					using (var process = Process.Start(startInfo))
@@ -82,23 +69,22 @@ namespace LfMerge
 				{
 					MainClass.Logger.Error(
 						"LfMerge-{0}: Unhandled exception trying to start '{1}' '{2}' in '{3}'\n{4}",
-						FdoCache.ModelVersion, startInfo.FileName, startInfo.Arguments,
+						MainClass.ModelVersion, startInfo.FileName, startInfo.Arguments,
 						startInfo.WorkingDirectory, e);
 				}
 			}
 
-			MainClass.Logger.Notice("LfMerge-{0} finished", FdoCache.ModelVersion);
+			MainClass.Logger.Notice("LfMerge-{0} finished", MainClass.ModelVersion);
 		}
 
 		private static string RunAction(string projectCode, ActionNames currentAction)
 		{
-			var settings = MainClass.Container.Resolve<LfMergeSettings>();
 			LanguageForgeProject project = null;
 			var stopwatch = new Stopwatch();
 			try
 			{
 				MainClass.Logger.Notice("ProjectCode {0}", projectCode);
-				project = LanguageForgeProject.Create(settings, projectCode);
+				project = LanguageForgeProject.Create(projectCode);
 
 				project.State.StartTimestamp = CurrentUnixTimestamp();
 				stopwatch.Start();
@@ -156,23 +142,6 @@ namespace LfMerge
 		private static void Cleanup()
 		{
 			LanguageForgeProject.DisposeProjectCache();
-		}
-
-		private static bool CheckSetup(LfMergeSettings settings)
-		{
-			var homeFolder = Environment.GetEnvironmentVariable("HOME") ?? "/var/www";
-			string[] folderPaths = { Path.Combine(homeFolder, ".local"),
-				Path.GetDirectoryName(settings.WebWorkDirectory) };
-			foreach (string folderPath in folderPaths)
-			{
-				if (!Directory.Exists(folderPath))
-				{
-					MainClass.Logger.Notice("Folder '{0}' doesn't exist", folderPath);
-					return false;
-				}
-			}
-
-			return true;
 		}
 
 		private static readonly DateTime _unixEpoch = new DateTime(1970, 1, 1);
