@@ -3,18 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using LfMerge.Core.FieldWorks;
+using LfMerge.Core.Logging;
 using LfMerge.Core.Settings;
 using Palaso.Progress;
 using SIL.FieldWorks.FDO;
 
 namespace LfMergeAuxTool
 {
-	class LfMergeAuxToolMainClass
+	static class LfMergeAuxToolMainClass
 	{
 		[STAThread]
 		public static void Main(string[] args)
 		{
+			ExceptionLogging.Initialize("17a42e4a67dd2e42d4aa40d8bf2d23ee", Assembly.GetExecutingAssembly().GetName().Name);
 			var options = AuxToolOptions.ParseCommandLineArgs(args);
 			if (options == null)
 				return;

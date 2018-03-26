@@ -95,6 +95,12 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bugsnag, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\BugsnagMonoImproved.1.4.0.0\lib\Net35\Bugsnag.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Palaso">
       <HintPath>..\..\lib\Palaso.dll</HintPath>
     </Reference>
@@ -126,6 +132,15 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LfMerge.Core\LfMerge.Core.csproj">
+      <Project>{ded60a67-66fc-44dd-8ad5-67e470d74a53}</Project>
+      <Name>LfMerge.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
