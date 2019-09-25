@@ -107,15 +107,6 @@
     <doDispose>false</doDispose>
   </Property>
   <Property>
-    <name>windowSize</name>
-    <value xsi:type="Size">
-      <Width>881</Width>
-      <Height>568</Height>
-    </value>
-    <doPersist>true</doPersist>
-    <doDispose>false</doDispose>
-  </Property>
-  <Property>
     <name>AllowInsertLinkToFile</name>
     <value xsi:type="xsd:boolean">true</value>
     <doPersist>true</doPersist>
@@ -134,12 +125,6 @@
     <doDispose>false</doDispose>
   </Property>
   <Property>
-    <name>BestStyleName</name>
-    <value xsi:type="xsd:string">????</value>
-    <doPersist>true</doPersist>
-    <doDispose>false</doDispose>
-  </Property>
-  <Property>
     <name>SidebarWidthGlobal</name>
     <value xsi:type="xsd:int">140</value>
     <doPersist>true</doPersist>
@@ -152,17 +137,8 @@
     <doDispose>false</doDispose>
   </Property>
   <Property>
-    <name>windowLocation</name>
-    <value xsi:type="Point">
-      <X>3170</X>
-      <Y>277</Y>
-    </value>
-    <doPersist>true</doPersist>
-    <doDispose>false</doDispose>
-  </Property>
-  <Property>
     <name>DictionaryPublicationLayout</name>
-    <value xsi:type="xsd:string">/home/eberhard/fwrepo/fw/DistFiles/Language Explorer/DefaultConfigurations/Dictionary/Root.fwdictconfig</value>
+    <value xsi:type="xsd:string">d:\fwrepo\fw\DistFiles\Language Explorer\DefaultConfigurations\Dictionary\Root.fwdictconfig</value>
     <doPersist>true</doPersist>
     <doDispose>false</doDispose>
   </Property>
@@ -174,7 +150,7 @@
   </Property>
   <Property>
     <name>windowState</name>
-    <value xsi:type="FormWindowState">Normal</value>
+    <value xsi:type="FormWindowState">Maximized</value>
     <doPersist>true</doPersist>
     <doDispose>false</doDispose>
   </Property>

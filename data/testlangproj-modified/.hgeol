@@ -1,0 +1,3 @@
+[patterns]
+**.fwdictconfig = CRLF
+**.plsx = CRLF

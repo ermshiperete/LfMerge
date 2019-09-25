@@ -1,15 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProjectLexiconSettings>
   <WritingSystems>
+    <WritingSystem id="ar-IQ">
+      <Abbreviation>Ara</Abbreviation>
+      <LanguageName>Arabic</LanguageName>
+      <SpellCheckingId>ar_IQ</SpellCheckingId>
+      <SystemCollation>ar-IQ</SystemCollation>
+    </WritingSystem>
+    <WritingSystem id="de">
+      <Abbreviation>de</Abbreviation>
+      <LanguageName>German</LanguageName>
+      <SpellCheckingId>de</SpellCheckingId>
+    </WritingSystem>
+    <WritingSystem id="dv">
+      <Abbreviation>Div</Abbreviation>
+      <LanguageName>Divehi</LanguageName>
+      <SystemCollation>dv</SystemCollation>
+    </WritingSystem>
+    <WritingSystem id="en-US">
+      <Abbreviation>Eng</Abbreviation>
+      <LanguageName>English</LanguageName>
+      <SystemCollation>en-US</SystemCollation>
+    </WritingSystem>
+    <WritingSystem id="en">
+      <Abbreviation>Eng</Abbreviation>
+      <LanguageName>English</LanguageName>
+      <SpellCheckingId>en</SpellCheckingId>
+      <SystemCollation>en</SystemCollation>
+    </WritingSystem>
+    <WritingSystem id="es">
+      <Abbreviation>es</Abbreviation>
+      <LanguageName>Spanish</LanguageName>
+      <SystemCollation />
+    </WritingSystem>
+    <WritingSystem id="fr-fonipa">
+      <Abbreviation>FrnI</Abbreviation>
+      <LanguageName>French</LanguageName>
+      <SpellCheckingId>fr__IPA</SpellCheckingId>
+      <Keyboard>IPA Unicode 5.0c (ver 1.1.5) KMN</Keyboard>
+      <SystemCollation>fr</SystemCollation>
+    </WritingSystem>
+    <WritingSystem id="fr">
+      <Abbreviation>fr</Abbreviation>
+      <LanguageName>French</LanguageName>
+      <SpellCheckingId>fr</SpellCheckingId>
+      <SystemCollation />
+    </WritingSystem>
+    <WritingSystem id="grc">
+      <Abbreviation>Grk</Abbreviation>
+      <LanguageName>Greek, Ancient</LanguageName>
+    </WritingSystem>
+    <WritingSystem id="hbo">
+      <Abbreviation>Heb</Abbreviation>
+      <LanguageName>Hebrew, Ancient</LanguageName>
+    </WritingSystem>
     <WritingSystem id="pt">
       <Abbreviation>Por</Abbreviation>
+      <LanguageName>Portuguese</LanguageName>
       <SpellCheckingId>por</SpellCheckingId>
       <SystemCollation>pt-PT</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="qaa-Zxxx-x-kal-audio">
-      <Abbreviation>KalAud</Abbreviation>
-      <LanguageName>Kalaba</LanguageName>
-      <SpellCheckingId>qaa_Zxxx_x_kal_AUDIO</SpellCheckingId>
     </WritingSystem>
     <WritingSystem id="qaa-fonipa-x-kal">
       <Abbreviation>KalIpa</Abbreviation>
@@ -33,53 +82,16 @@
       <SpellCheckingId>xsta</SpellCheckingId>
       <Keyboard>Stacking Diacritics Demo</Keyboard>
     </WritingSystem>
+    <WritingSystem id="qaa-Zxxx-x-kal-audio">
+      <Abbreviation>KalAud</Abbreviation>
+      <LanguageName>Kalaba</LanguageName>
+      <SpellCheckingId>qaa_Zxxx_x_kal_AUDIO</SpellCheckingId>
+    </WritingSystem>
     <WritingSystem id="zh-CN">
       <Abbreviation>Chn</Abbreviation>
+      <LanguageName>Mandarin Chinese</LanguageName>
       <SpellCheckingId>zh_CN</SpellCheckingId>
       <SystemCollation>zh-CN</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="ar-IQ">
-      <Abbreviation>Ara</Abbreviation>
-      <SpellCheckingId>ar_IQ</SpellCheckingId>
-      <SystemCollation>ar-IQ</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="de">
-      <Abbreviation>de</Abbreviation>
-      <SpellCheckingId>de</SpellCheckingId>
-    </WritingSystem>
-    <WritingSystem id="dv">
-      <Abbreviation>Div</Abbreviation>
-      <SystemCollation>dv</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="en-US">
-      <Abbreviation>Eng</Abbreviation>
-      <SystemCollation>en-US</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="en">
-      <Abbreviation>Eng</Abbreviation>
-      <SpellCheckingId>en</SpellCheckingId>
-      <SystemCollation>en</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="es">
-      <Abbreviation>es</Abbreviation>
-      <SystemCollation>es</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="fr-fonipa">
-      <Abbreviation>FrnI</Abbreviation>
-      <SpellCheckingId>fr__IPA</SpellCheckingId>
-      <Keyboard>IPA Unicode 5.0c (ver 1.1.5) KMN</Keyboard>
-      <SystemCollation>fr</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="fr">
-      <Abbreviation>fr</Abbreviation>
-      <SpellCheckingId>fr</SpellCheckingId>
-      <SystemCollation>fr</SystemCollation>
-    </WritingSystem>
-    <WritingSystem id="grc">
-      <Abbreviation>Grk</Abbreviation>
-    </WritingSystem>
-    <WritingSystem id="hbo">
-      <Abbreviation>Heb</Abbreviation>
     </WritingSystem>
   </WritingSystems>
 </ProjectLexiconSettings>
