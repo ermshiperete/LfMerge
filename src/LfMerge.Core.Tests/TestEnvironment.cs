@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Autofac;
+using Chorus.VcsDrivers.Mercurial;
 using IniParser.Parser;
 using LfMerge.Core.Actions.Infrastructure;
 using LfMerge.Core.LanguageForge.Infrastructure;
@@ -15,6 +16,7 @@ using NUnit.Framework;
 using SIL.IO;
 using SIL.LCModel.Core.WritingSystems;
 using SIL.LCModel.Utils;
+using SIL.Progress;
 using SIL.TestUtilities;
 using SIL.WritingSystems;
 using SIL.WritingSystems.Migration;
@@ -147,8 +149,9 @@ namespace LfMerge.Core.Tests
 
 		public static void CopyFwProjectTo(string projectCode, string destDir)
 		{
-			string dataDir = Path.Combine(FindGitRepoRoot(), "data");
-			DirectoryHelper.Copy(Path.Combine(dataDir, projectCode), Path.Combine(destDir, projectCode));
+			var dataDir = Path.Combine(FindGitRepoRoot(), "data");
+			var destRepo = Path.Combine(destDir, projectCode);
+			DirectoryHelper.Copy(Path.Combine(dataDir, projectCode), destRepo);
 
 			// Adjust hgrc file
 			var hgrc = Path.Combine(destDir, projectCode, ".hg/hgrc");
@@ -169,6 +172,11 @@ namespace LfMerge.Core.Tests
 				var contents = iniData.ToString();
 				File.WriteAllText(hgrc, contents);
 			}
+
+			var hgCommand = $"hg update tip";
+			var result = HgRunner.Run(hgCommand, destRepo, 10, new NullProgress());
+			if (result.ExitCode != 0)
+				throw new ApplicationException($"'{hgCommand}' returned {result.ExitCode}");
 
 			Console.WriteLine("Copied {0} to {1}", projectCode, destDir);
 		}

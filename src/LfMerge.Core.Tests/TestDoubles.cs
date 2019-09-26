@@ -524,11 +524,3 @@ namespace LfMerge.Core.Tests
 		}
 	}
 }
-
-// We can't directly use Chorus, so we redefine the exception we need here
-namespace Chorus.VcsDrivers.Mercurial
-{
-	class RepositoryAuthorizationException: Exception
-	{
-	}
-}
